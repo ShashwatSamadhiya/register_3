@@ -17,6 +17,7 @@ class _register_page_3State extends State<register_page_3> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => startTimer());
   }
 
   void startTimer() {
@@ -26,12 +27,13 @@ class _register_page_3State extends State<register_page_3> {
 
   void setCountDown() {
     setState(() {
-      sec = sec - 1;
-      if (sec < 0) {
+      if (sec == 0) {
         countdownTimer!.cancel();
         bt = false;
         sec = 30;
-      } else {}
+      } else {
+        sec = sec - 1;
+      }
     });
   }
   // void initState() {
@@ -124,7 +126,7 @@ class _register_page_3State extends State<register_page_3> {
                 fontWeight: FontWeight.w700,
                 fontSize: 40,
                 wordSpacing: 5,
-                letterSpacing: 8,
+                letterSpacing: 16,
                 color: Colors.white),
           )),
     );
@@ -145,7 +147,7 @@ class _register_page_3State extends State<register_page_3> {
                     ),
                     children: <TextSpan>[
                     TextSpan(
-                      text: "00:${sec}",
+                      text: sec >= 10 ? "00:${sec}" : "00:0${sec}",
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -233,7 +235,6 @@ class _register_page_3State extends State<register_page_3> {
   }
 
   Widget build(BuildContext context) {
-    startTimer;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
