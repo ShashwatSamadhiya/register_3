@@ -164,7 +164,7 @@ class _register_page_3State extends State<register_page_3> {
                 // height: 149,
                 child: Stack(children: [
                   Text(
-                    "Didn't recived the call?",
+                    "Didn't receive the call?",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
