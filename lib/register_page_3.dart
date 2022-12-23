@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -53,55 +55,70 @@ class _register_page_3State extends State<register_page_3> {
 
   @override
   Widget Crd(BuildContext context) {
-    return Container(
+    return Expanded(
+        child: Container(
       width: 390,
-      height: 107 + 544,
+      //height: 554,
       color: Colors.black,
-      child: Stack(
+      child: Column(
         children: [
-          Container(
-            width: 390,
-            height: 197,
-            margin: EdgeInsets.only(top: 280),
-            child: Image.asset(
-              "assests/images/group.png",
+          // Container(
+          //   width: 390,
+          //   height: 197,
+          //   margin: EdgeInsets.only(top: 280),
+          //   child: Image.asset(
+          //     "assests/images/group.png",
+          //   ),
+          // ),
+          Expanded(flex: 100, child: Container()),
+          Expanded(
+            flex: bt ? 400 : 287,
+            child: Container(
+              width: 389,
+              //height: 544,
+              //margin: EdgeInsets.only(top: 87),
+              child: Image.asset(
+                bt
+                    ? "assests/images/mixed.png"
+                    : "assests/images/mixed_half.png",
+              ),
             ),
-          ),
-          Container(
-            width: 390,
-            height: 544,
-            margin: EdgeInsets.only(top: 107),
-            child: Image.asset(
-              "assests/images/whatsapp.png",
-            ),
-          ),
+          )
         ],
       ),
-    );
+    ));
   }
 
   Widget field(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 34, left: 16, right: 15),
+      margin: EdgeInsets.only(left: 16, right: 15),
       width: 359,
-      height: 22,
+      // height: 22,
       child: Row(children: [
         Text(
           "+91 98263 76262",
           style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 17,
+              fontSize: min(
+                  17,
+                  min(MediaQuery.of(context).size.width / 19,
+                      MediaQuery.of(context).size.height / 27)),
               color: Color(0xFFFAEAEB2),
               letterSpacing: -.31),
         ),
+        Spacer(),
         Container(
-          margin: EdgeInsets.only(left: 170),
+          //margin: EdgeInsets.only(left: 170),
           child: Text(
             "Change",
             style: TextStyle(
-                color: Color(0xFFF9C63E5),
-                fontWeight: FontWeight.w400,
-                fontSize: 15),
+              color: Color(0xFFF9C63E5),
+              fontWeight: FontWeight.w400,
+              fontSize: min(
+                  15,
+                  min(MediaQuery.of(context).size.width / 20,
+                      MediaQuery.of(context).size.height / 33)),
+            ),
           ),
         ),
       ]),
@@ -115,143 +132,204 @@ class _register_page_3State extends State<register_page_3> {
         borderRadius: BorderRadius.circular(14),
       ),
       width: 359,
-      height: 92,
-      margin: EdgeInsets.only(top: 70, left: 17, right: 15),
-      child: Container(
-          margin: EdgeInsets.only(top: 18),
+      //height: 92,
+      margin: EdgeInsets.only(left: 17, right: 15),
+      padding: EdgeInsets.symmetric(vertical: 2),
+      child: Center(
           child: Text(
-            "098 042",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 40,
-                wordSpacing: 5,
-                letterSpacing: 16,
-                color: Colors.white),
-          )),
+        "098 042",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: min(
+                40,
+                min(MediaQuery.of(context).size.width / 9,
+                    MediaQuery.of(context).size.height / 20)),
+            wordSpacing: 5,
+            letterSpacing: 1,
+            color: Colors.white),
+      )),
     );
   }
 
   Widget Button(BuildContext context) {
-    return Container(
-        width: 358,
-        margin: EdgeInsets.only(left: 16, top: 180),
-        child: bt
-            ? RichText(
-                text: TextSpan(
-                    text: "Calling in ",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      // letterSpacing: -0.24
-                    ),
-                    children: <TextSpan>[
-                    TextSpan(
-                      text: sec >= 10 ? "00:${sec}" : "00:0${sec}",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        //letterSpacing: -0.24
-                      ),
-                      // recognizer: TapGestureRecognizer()
-                      //   ..onTap = () => {
-                      //         startTimer(),
-                      //       }
-                    )
-                  ]))
-            : Container(
-                width: 358,
-                // height: 149,
-                child: Stack(children: [
-                  Text(
-                    "Didn't receive the call?",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 36),
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Color(0xFFF3A3A3C),
+    return Flexible(
+        child: Container(
+            width: 358,
+            margin: EdgeInsets.only(left: 16, right: 16),
+            // margin: EdgeInsets.only(left: 16, top: 180),
+            child: bt
+                ? RichText(
+                    text: TextSpan(
+                        text: "Calling in ",
+                        style: TextStyle(
+                          fontSize: min(
+                              15,
+                              min(MediaQuery.of(context).size.width / 20,
+                                  MediaQuery.of(context).size.height / 33)),
+                          fontWeight: FontWeight.w400,
+                          // letterSpacing: -0.24
                         ),
-                        child: Image.asset("assests/images/air.png"),
-                      ),
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Container(
-                          width: 297,
-                          height: 40,
-                          margin: EdgeInsets.only(top: 36),
-                          child: Text(
-                            "Try Switching Airplane mode ON and OFF. Then Retry calling",
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white),
-                          ))
-                    ],
-                  ),
-                  Container(
-                      width: 358,
-                      height: 32,
-                      margin: EdgeInsets.only(top: 97),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Container(
-                        width: 36,
-                        height: 18,
-                        margin: EdgeInsets.only(left: 161, right: 161, top: 7),
-                        child: Text(
-                          "Retry",
+                        children: <TextSpan>[
+                        TextSpan(
+                          text: sec >= 10 ? "00:${sec}" : "00:0${sec}",
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: min(
+                                15,
+                                min(MediaQuery.of(context).size.width / 20,
+                                    MediaQuery.of(context).size.height / 33)),
                             fontWeight: FontWeight.w700,
+                            //letterSpacing: -0.24
                           ),
-                        ),
-                      ))
-                ]),
-              ));
+                          // recognizer: TapGestureRecognizer()
+                          //   ..onTap = () => {
+                          //         startTimer(),
+                          //       }
+                        )
+                      ]))
+                : Container(
+                    width: 358,
+                    // height: 149,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              flex: 125,
+                              child: Text(
+                                "Didn't receive the call?",
+                                style: TextStyle(
+                                  fontSize: min(
+                                      15,
+                                      min(
+                                          MediaQuery.of(context).size.width /
+                                              20,
+                                          MediaQuery.of(context).size.height /
+                                              33)),
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              )),
+                          Expanded(flex: 100, child: Container()),
+                          Expanded(
+                            flex: 280,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 257,
+                                  child: Container(
+                                    // margin: EdgeInsets.only(top: 36),
+                                    width: 36,
+                                    //height: 36,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      //borderRadius: BorderRadius.circular(100),
+                                      color: Color(0xFFF3A3A3C),
+                                    ),
+                                    child:
+                                        Image.asset("assests/images/air.png"),
+                                  ),
+                                ),
+                                Expanded(flex: 100, child: Container()),
+                                Expanded(
+                                    flex: 1821,
+                                    child: Container(
+                                        width: 297,
+                                        // height: 40,
+                                        //margin: EdgeInsets.only(top: 36),
+                                        child: Text(
+                                          "Try Switching Airplane mode ON and OFF. Then Retry calling",
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: min(
+                                                  15,
+                                                  min(
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width /
+                                                          23,
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height /
+                                                          37)),
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.white),
+                                        )))
+                              ],
+                            ),
+                          ),
+                          Expanded(flex: 101, child: Container()),
+                          Expanded(
+                              flex: 200,
+                              child: Container(
+                                  width: 358,
+                                  // height: 32,
+                                  //margin: EdgeInsets.only(top: 97),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Retry",
+                                      style: TextStyle(
+                                        fontSize: min(
+                                            13,
+                                            min(
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    30,
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    33)),
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  )))
+                        ]),
+                  )));
   }
 
   Widget lower(BuildContext context) {
     return Container(
       width: 390,
-      height: bt ? 273 : 428,
-      margin: bt ? EdgeInsets.only(top: 524) : EdgeInsets.only(top: 415),
+      // height: bt ? 273 : 428,
+      //margin: bt ? EdgeInsets.only(top: 524) : EdgeInsets.only(top: 415),
       color: const Color(0xFFF1C1C1E),
-      child:
-          Stack(children: [field(context), textArea(context), Button(context)]),
+      child: Column(children: [
+        Expanded(flex: 157, child: field(context)),
+        Expanded(flex: 100, child: Container()),
+        Expanded(flex: 657, child: textArea(context)),
+        Expanded(flex: 129, child: Container()),
+        Expanded(
+            flex: bt ? 192 : 921,
+            child: Column(
+              children: [Button(context)],
+            ))
+      ]),
     );
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Container(
             color: const Color(0xFFF1C1C1E),
-            constraints: BoxConstraints(maxHeight: 944, maxWidth: 390),
+            // constraints: BoxConstraints(maxHeight: 844, maxWidth: 390),
             child: Column(
               children: [
-                Stack(
-                  children: [
-                    Crd(context),
-                    //  field(context),
-                    //    textArea(context),
-                    lower(context)
-                  ],
-                )
-
-                // Button(context)
+                Expanded(
+                    flex: bt ? 1541 : 1220,
+                    child: Column(
+                      children: [
+                        Crd(context),
+                      ],
+                    )),
+                Expanded(flex: 40, child: Container()),
+                Expanded(flex: bt ? 488 : 750, child: lower(context)),
+                Expanded(flex: 150, child: Container()),
               ],
             )),
       ),
